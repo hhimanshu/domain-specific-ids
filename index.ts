@@ -1,35 +1,24 @@
-import { TypeID, typeid } from "typeid-js";
+import { typeid, TypeID } from 'typeid-js';
 
-type BookId = TypeID<"book">;
-type PublisherId = TypeID<"publisher">;
+type BookId = TypeID<"book">
+type PublisherId = TypeID<"pub">
+
 
 const addBook = (bookId: BookId, name: string) => {
-    console.log(`addBook: ${bookId} - ${name}`);
+    console.log(`Adding book with id: [${bookId}] and name: [${name}]`)
 }
 
 const addPublisher = (publisherId: PublisherId, name: string) => {
-    console.log(`addPublisher: ${publisherId} - ${name}`);
+    console.log(`Adding publisher with id: [${publisherId}] and name: [${name}]`)
 }
 
-const bookId = typeid<"book">("book");
-addBook(bookId, "The Lord of the Rings");
+
+const bookId: BookId = typeid<"book">("book");
+const publisherId: PublisherId = typeid<"pub">("pub");
+
+addBook(bookId, "The Alchemist")
+addPublisher(publisherId, "Harper Collins")
 
 
-const publisherId = typeid<"publisher">("publisher");
-addPublisher(publisherId, "Harper Collins");
-// addPublisher(bookId, "Harper Collins"); // Error: Argument of type 'TypeID<"book">' is not assignable to parameter of type 'TypeID<"publisher">'.
-
-
-const bookIdWithUuid7 = "018f1de1-5882-7b40-b729-98465eafd0dd"
-const bookIdWithTypeId = "book_01hwexx7z9fncbhsj9txnrqqgs"
-
-const bookApiEndpoint = `https://api.example.com/books/`;
-
-const bookApiEndpointWithUuid = `${bookApiEndpoint}${bookIdWithUuid7}`;
-const bookApiEndpointWithTypeId = `${bookApiEndpoint}${bookIdWithTypeId}`;
-
-console.log(bookApiEndpointWithUuid); 
-// https://api.example.com/books/018f1de1-5882-7b40-b729-98465eafd0dd
-
-console.log(bookApiEndpointWithTypeId);
-// https://api.example.com/books/book_01hwexx7z9fncbhsj9txnrqqgs
+"018f1ea8-f47e-7f5f-8f05-f3b24aeb4cb3"
+"pub_01hwfaggfbfjmarpkccy28h2hr"
